@@ -1,0 +1,14 @@
+li{
+    background-color: lightcyan;
+    border-bottom: solid 1px #eee;
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    color: rebeccapurple;
+    text-align: center;
+}
+
+.completed{
+    background-color: #eee;
+    color: #666;
+}
