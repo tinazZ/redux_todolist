@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER } from '../action/actions';
+import { ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, FETCH_REQUEST, FETCH_SUCCESS } from '../action/actions';
 
 
 const initialTodoList = [
@@ -56,9 +56,31 @@ function filterList(state = initialFilter, action) {
     }
 }
 
+
+
+function fetchList(state = {}, action) {
+    switch (action.type) {
+        case FETCH_SUCCESS:
+            return action.data
+        default:
+            return state;
+    }
+}
+
+function fetchFlag(state = false, action) {
+    switch (action.type) {
+        case FETCH_REQUEST:
+            return true;
+        default:
+            return state;
+    }
+}
+
 const reducers = combineReducers({
     todoList,
-    filterList
+    filterList,
+    fetchList,
+    fetchFlag
 })
 
 export default reducers;

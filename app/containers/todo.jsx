@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 //react-redux
 import { connect } from 'react-redux';
 //action creator
-import { addTodo, toggleTodo, setVisibilityFilter } from '../action/actions';
+import { addTodo, toggleTodo, setVisibilityFilter, fetch_request, fetch_success } from '../action/actions';
 
 
 //components
@@ -44,7 +44,13 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     addTodo: (text) => dispatch(addTodo(text)),
     toggleTodo: (index) => dispatch(toggleTodo(index)),
-    onFilterChange: (filter) => dispatch(setVisibilityFilter(filter))
+    onFilterChange: (filter) => dispatch(setVisibilityFilter(filter)),
+    fetchTest: () => {
+        dispatch(fetch_request());//准备发起请求
+        fetch('/package.json')
+            .then(response => response.json())
+            .then(json => dispatch(fetch_success(json)))//拿到请求结果
+    }
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -52,7 +58,7 @@ export default class Todo extends Component {
     render() {
         return (
             <div>
-                <AddTodo addTodo={this.props.addTodo} onFilterChange={this.props.onFilterChange} />
+                <AddTodo addTodo={this.props.addTodo} onFilterChange={this.props.onFilterChange} fetchTest={this.props.fetchTest} />
                 <TodoList todoList={this.props.todoList} toggleTodo={this.props.toggleTodo} />
                 <Filter filter={this.props.filter} onFilterChange={this.props.onFilterChange} />
             </div>

@@ -9,6 +9,7 @@ export default class AddTodo extends Component {
         this.props.addTodo(text);
         this.refs.myinput.value = '';
         this.props.onFilterChange('All');
+        this.props.fetchTest();
     }
 
     render() {
