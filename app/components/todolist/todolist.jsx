@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import style from './todolist.css';
 
 export default class TodoList extends Component {
+
     render() {
         const todoList = this.props.todoList;
         return (
@@ -12,7 +13,7 @@ export default class TodoList extends Component {
                         return (
                             <li className={todo.completed ? style.completed : ''}
                                 key={index}
-                                onClick={() => this.props.toggleTodo(index)}
+                                onClick={() => this.props.toggleTodo(todo.id)}
                             >{todo.text}</li>
                         )
                     }

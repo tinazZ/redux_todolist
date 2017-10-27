@@ -3,8 +3,8 @@ import { ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER } from '../action/actions'
 
 
 const initialTodoList = [
-    { text: 1, completed: true },
-    { text: 2, completed: false }
+    { text: 1, completed: true, id: 0 },
+    { text: 2, completed: false, id: 1 }
 ];
 
 function todoList(state = initialTodoList, action) {
@@ -14,7 +14,8 @@ function todoList(state = initialTodoList, action) {
                 ...state,
                 {
                     text: action.text,
-                    completed: false
+                    completed: false,
+                    id: state.length
                 }
             ]
         case TOGGLE_TODO:
