@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import logger from 'redux-logger'
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 import reducers from './reducer/reducers';
 import Todo from './containers/todo';
@@ -13,7 +14,7 @@ import Todo from './containers/todo';
 //createStore可以接收初始state作为第二个参数，也可以写在reducers里面
 const store = window.store = createStore(
     reducers,
-    applyMiddleware(logger)
+    applyMiddleware(thunk,logger)
 );
 
 const rootEl = document.getElementById('root');
